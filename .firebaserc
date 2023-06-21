@@ -1,0 +1,8 @@
+{
+  "projects": {
+    "default": "todolist-fd8cc",
+    "staging": "todolist-fd8cc"
+  },
+  "targets": {},
+  "etags": {}
+}
