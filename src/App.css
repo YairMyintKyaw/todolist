@@ -4,10 +4,39 @@
 @tailwind components;
 @tailwind utilities;
 
+/* width */
+::-webkit-scrollbar {
+  width: 0px;
+}
+
 .input {
   @apply px-3 py-2 min-w-[300px] w-[60%] max-w-[400px] bg-neutral-100  rounded placeholder:text-slate-400;
 }
 
 .active {
   @apply bg-primary text-secondary;
+}
+
+.not_started_button {
+  @apply bg-red-700 border-red-700 hover:text-red-700;
+}
+
+.not_started {
+  @apply bg-red-200;
+}
+
+.on_progress_button {
+  @apply bg-yellow-700 border-yellow-700 hover:text-yellow-700;
+}
+
+.on_progress {
+  @apply bg-yellow-200;
+}
+
+.completed_button {
+  @apply bg-green-700 border-green-700 hover:text-green-700;
+}
+
+.completed {
+  @apply bg-green-200;
 }

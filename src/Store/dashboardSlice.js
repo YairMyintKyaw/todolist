@@ -25,26 +25,22 @@ export const dashboardSlice = createSlice({
       return { ...state, isAddProjectModalOn: !state.isAddProjectModalOn };
     },
 
-    toggleAddTaskModal: (state) => {
-      return { ...state, isAddTaskModalOn: !state.isAddTaskModalOn };
-    },
-
-    toggleNotStartedAddBox: (state) => {
+    toggleNotStartedAddBox: (state, { payload }) => {
       return {
         ...state,
-        isNotStartedAddBoxOn: !state.isNotStartedAddBoxOn,
+        isNotStartedAddBoxOn: payload,
       };
     },
-    toggleOnProgressAddBox: (state) => {
+    toggleOnProgressAddBox: (state, { payload }) => {
       return {
         ...state,
-        isOnProgressAddBoxOn: !state.isOnProgressAddBoxOn,
+        isOnProgressAddBoxOn: payload,
       };
     },
-    toggleCompletedAddBox: (state) => {
+    toggleCompletedAddBox: (state, { payload }) => {
       return {
         ...state,
-        isCompletedAddBoxOn: !state.isCompletedAddBoxOn,
+        isCompletedAddBoxOn: payload,
       };
     },
   },
@@ -54,7 +50,6 @@ export const {
   toggleNavBar,
   toggleProjectDropdown,
   toggleAddProjectModal,
-  toggleAddTaskModal,
   toggleNotStartedAddBox,
   toggleOnProgressAddBox,
   toggleCompletedAddBox,

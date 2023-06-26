@@ -5,14 +5,12 @@ import { useSelector } from "react-redux";
 import AddProjectModal from "../Components/AddProjectModal.component";
 
 const Dashboard = () => {
-  const { isAddTaskModalOn, isAddProjectModalOn } = useSelector(
-    (state) => state.dashboard
-  );
+  const { isAddProjectModalOn } = useSelector((state) => state.dashboard);
 
   return (
-    <div className="flex bg-primary">
+    <div className="flex bg-primary h-screen ">
       <NavBar />
-      <div className="flex-1 flex flex-col text-secondary ">{<Outlet />}</div>
+      <div className="flex-1 flex flex-col text-secondary">{<Outlet />}</div>
       {isAddProjectModalOn && <AddProjectModal />}
     </div>
   );

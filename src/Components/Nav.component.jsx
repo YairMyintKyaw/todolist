@@ -62,7 +62,7 @@ const Nav = () => {
               <NavLink
                 to={`todolist/${project}`}
                 key={uuid()}
-                className="py-2 px-5 mb-2 rounded-xl cursor-pointer border border-primary hover:bg-primary hover:text-secondary transition-colors duration-200"
+                className="py-2 px-5 mb-2 mx-auto text-center rounded-xl cursor-pointer border border-primary hover:bg-primary hover:text-secondary transition-colors duration-200"
               >
                 {project}
               </NavLink>

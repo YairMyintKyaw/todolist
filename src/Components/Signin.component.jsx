@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import {
-  createUserDocumentFormAuth,
   signInAuthWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../Utils/Firebase/firebase.util";

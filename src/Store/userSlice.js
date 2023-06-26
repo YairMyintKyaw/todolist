@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 
 const initialState = {
   displayName: "",
   uid: "",
   email: "",
-  todoList: "",
+  todoList: {},
 };
 
 export const userSlice = createSlice({
@@ -14,8 +14,14 @@ export const userSlice = createSlice({
     setUserInfo: (state, { payload }) => {
       return { ...state, ...payload };
     },
+    updateTodoList: (state, { payload }) => {
+      return {
+        ...state,
+        todoList: payload,
+      };
+    },
   },
 });
 
-export const { setUserInfo } = userSlice.actions;
+export const { setUserInfo, updateTodoList } = userSlice.actions;
 export default userSlice.reducer;
