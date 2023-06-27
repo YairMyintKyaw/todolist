@@ -9,9 +9,12 @@ import {
 import Column from "./Column.component";
 import { DragDropContext } from "react-beautiful-dnd";
 import { updateTodoList } from "../Store/userSlice";
+import { addToDoList } from "../Utils/Firebase/firebase.util";
 
 const Todolist = () => {
-  const { displayName, todoList, email } = useSelector((state) => state.user);
+  const { displayName, todoList, email, uid } = useSelector(
+    (state) => state.user
+  );
   const { isNotStartedAddBoxOn, isOnProgressAddBoxOn, isCompletedAddBoxOn } =
     useSelector((state) => state.dashboard);
   const date = new Date();
@@ -66,7 +69,7 @@ const Todolist = () => {
       currentTaskClone
     );
     dispatch(updateTodoList(newTodoList));
-    // updateTodoList(newTodoList);
+    addToDoList(uid, newTodoList);
   };
 
   useEffect(() => {
