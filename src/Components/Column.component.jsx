@@ -41,7 +41,11 @@ const Column = ({ state, toggleBox, isAddBoxOn }) => {
       <div className="flex-1 overflow-y-scroll ">
         <Droppable droppableId={states[state]}>
           {(provided) => (
-            <div ref={provided.innerRef} {...provided.droppableProps}>
+            <div
+              ref={provided.innerRef}
+              {...provided.droppableProps}
+              className="h-full "
+            >
               {tasks.map(
                 (task, index) =>
                   task.state === states[state] && (

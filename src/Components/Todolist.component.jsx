@@ -31,7 +31,9 @@ const Todolist = () => {
     const newTodoList = JSON.parse(JSON.stringify(todoList));
     const currentProject = newTodoList[project];
     const { destination, source, draggableId } = result;
-
+    console.log(destination);
+    console.log(source);
+    console.log(draggableId);
     if (!destination) {
       return;
     }
@@ -42,33 +44,27 @@ const Todolist = () => {
     ) {
       return;
     }
-    console.log(destination);
-    console.log(source);
-    console.log(draggableId);
 
     // change index
     const currentTask = currentProject[source.index];
     // change state
     currentTask.state = destination.droppableId;
     const currentTaskClone = JSON.parse(JSON.stringify(currentTask));
+    console.log(newTodoList);
+
     currentProject.splice(source.index, 1);
-    // console.log("Destination", destination.index);
-    // console.log("Source", source.index);
-    // console.log(destination.index - 1);
-    console.log(
-      destination.index < source.index
-        ? destination.index - 1
-        : destination.index
-    );
-    // console.log(destination.index);
+    console.log("Destination", destination.index);
+    console.log("Source", source.index);
+    console.log(destination.index - 1);
+
     currentProject.splice(
-      destination.index < source.index
+      destination.index > source.index &&
+        destination.droppableId != source.droppableId
         ? destination.index - 1
         : destination.index,
       0,
       currentTaskClone
     );
-
     dispatch(updateTodoList(newTodoList));
     // updateTodoList(newTodoList);
   };
