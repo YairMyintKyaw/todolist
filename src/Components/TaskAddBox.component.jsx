@@ -19,7 +19,7 @@ const TaskAddBox = ({ hideBox, addTask, buttonType, state }) => {
   const { uid, todoList } = useSelector((state) => state.user);
   const dispatch = useDispatch();
   return (
-    <div className="border-primary border rounded p-3 m-2 text-primary ">
+    <div className="border-primary border rounded p-3 text-primary ">
       <Formik
         initialValues={{ task_name: "", description: "" }}
         validate={(values) => {

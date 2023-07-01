@@ -11,8 +11,8 @@ const NavBar = () => {
   return (
     <div
       className={`${
-        isNavBarOn ? "w-1/6" : "w-[80px]"
-      } h-screen flex flex-col pb-3 text-primary border-r border-r-primary  bg-secondary rounded-tr-lg overflow-hidden transition-all duration-300`}
+        isNavBarOn ? "min-w-[20%] w-[20%]" : "min-w-[80px]"
+      } h-screen flex flex-col pb-3 text-primary border-r border-r-primary  bg-secondary rounded-tr-lg overflow-scroll transition-all duration-300`}
     >
       {/* Nav bar toggle icon button */}
       <NavBarToggleButton />

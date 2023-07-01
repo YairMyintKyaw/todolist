@@ -5,6 +5,7 @@ import { toggleAddProjectModal } from "../Store/dashboardSlice";
 import { Formik } from "formik";
 import { updateTodoList } from "../Store/userSlice";
 import { addToDoList } from "../Utils/Firebase/firebase.util";
+import { useNavigate } from "react-router-dom";
 
 const AddProjectModal = () => {
   const { uid, todoList } = useSelector((state) => state.user);
@@ -12,6 +13,7 @@ const AddProjectModal = () => {
   const closeProjectModal = () => {
     dispatch(toggleAddProjectModal());
   };
+  const nav = useNavigate();
   return (
     <div className="flex justify-center items-center absolute left-0 right-0 top-0 bottom-0 m-auto bg-secondary opacity-95 z-50">
       <div className="w-3/4">
@@ -34,10 +36,10 @@ const AddProjectModal = () => {
               ...todoList,
               [values.project_name]: [],
             };
-            console.log(newList);
 
             dispatch(updateTodoList(newList));
             addToDoList(uid, newList);
+            nav(`todolist/${values.project_name}`);
             closeProjectModal();
           }}
         >
