@@ -56,7 +56,6 @@ const Todolist = () => {
     }
 
     if (destination.droppableId === "Delete") {
-      console.log("It is deleted");
       currentProject.splice(source.index, 1);
       dispatch(updateTodoList(newTodoList));
       addToDoList(uid, newTodoList);
@@ -66,7 +65,7 @@ const Todolist = () => {
     const currentTask = currentProject[source.index];
     // change state
     currentTask.state = destination.droppableId;
-
+    currentTask.updatedTime = Date.now();
     currentProject.splice(source.index, 1);
 
     currentProject.splice(

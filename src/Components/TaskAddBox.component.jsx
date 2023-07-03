@@ -37,6 +37,7 @@ const TaskAddBox = ({ hideBox, addTask, buttonType, state }) => {
                 id: uuid(),
                 name: values.task_name,
                 description: values.description,
+                updatedTime: Date.now(),
                 state: state,
               },
             ],
