@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { createAuthWithEmailAndPassword } from "../Utils/Firebase/firebase.util";
+import { image } from "../Image/image";
 
 const initialInputValue = {
   name: "",
@@ -101,7 +102,7 @@ const Signup = ({ signUpContainer, NavigateToSignIn }) => {
       <div
         className={` flex-1 flex items-center SignUpImageContainer animate__fast`}
       >
-        <img src=".\src\assets\signup.jpg" alt="" />
+        <img src={image.sign_up} alt="" />
       </div>
     </div>
   );

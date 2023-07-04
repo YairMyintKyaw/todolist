@@ -4,6 +4,7 @@ import {
   signInAuthWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../Utils/Firebase/firebase.util";
+import { image } from "../Image/image";
 
 const initialInputValue = {
   email: "",
@@ -90,7 +91,7 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
       <div
         className={`flex-1 flex items-center bg-[#F4E8EA] SignInImageContainer animate__fast`}
       >
-        <img src=".\src\assets\signin.jpg" alt="" />
+        <img src={image.sign_in} alt="" />
       </div>
     </div>
   );
