@@ -43,7 +43,7 @@ const Nav = () => {
     <nav className="flex flex-col flex-1">
       {/* home tab */}
       <NavLink
-        to={"/dashboard"}
+        to={""}
         className="p-5 flex items-center justify-center hover:bg-primary hover:text-secondary transition-colors duration-200 bg-inherit "
         end
       >

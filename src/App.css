@@ -13,6 +13,10 @@
   @apply px-3 py-2  border border-primary shadow  rounded placeholder:text-slate-400;
 }
 
+.active {
+  @apply bg-primary text-secondary;
+}
+
 div:has(> .active) {
   @apply bg-primary text-secondary;
 }
