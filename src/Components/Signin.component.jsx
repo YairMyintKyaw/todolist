@@ -13,26 +13,8 @@ const initialInputValue = {
 };
 
 const Signin = ({ signInContainer, NavigateToSignUp }) => {
-  const [formInputValue, setFormInputValue] = useState(initialInputValue);
-  const { email, password } = formInputValue;
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormInputValue({ ...formInputValue, [name]: value });
-  };
-
-  const resetForm = () => {
-    setFormInputValue(initialInputValue);
-  };
-
-  const handleSignIn = async (e) => {
-    e.preventDefault();
-    const result = await signInAuthWithEmailAndPassword(email, password);
-    resetForm();
-  };
-
   const signInWithGoogle = async () => {
-    const { user } = await signInWithGooglePopup();
+    await signInWithGooglePopup();
   };
 
   return (
@@ -50,18 +32,13 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
             initialValues={{ password: "", email: "" }}
             validate={(values) => {
               const error = {};
-              if (!values.password) error.password = "Required";
-              if (!values.email) error.email = "Required";
+              if (!values.password) error.password = "required";
+              if (!values.email) error.email = "required";
 
               return error;
             }}
-            onSubmit={async (e) => {
-              e.preventDefault();
-              const result = await signInAuthWithEmailAndPassword(
-                email,
-                password
-              );
-              resetForm();
+            onSubmit={async ({ email, password }) => {
+              await signInAuthWithEmailAndPassword(email, password);
             }}
           >
             {({
@@ -88,7 +65,7 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
                     onBlur={handleBlur}
                     placeholder="Mike@gmail.com"
                     value={values.email}
-                    className="input"
+                    className="input min-w-[300px] w-[60%] max-w-[400px]"
                   />
                   {errors.email && touched.email && (
                     <div className="text-red-600 text-sm px-3 pt-2">
@@ -106,8 +83,8 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
                     onChange={handleChange}
                     onBlur={handleBlur}
                     placeholder="6 or more characters"
-                    value={values.Password}
-                    className="input "
+                    value={values.password}
+                    className="input min-w-[300px] w-[60%] max-w-[400px]"
                   />
                   {errors.password && touched.password && (
                     <div className="text-red-600 text-sm px-3 pt-2">

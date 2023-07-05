@@ -8,7 +8,7 @@ import { Droppable } from "react-beautiful-dnd";
 
 const states = {
   "Not Started": "not started",
-  "On Progress": "on progress",
+  "In Progress": "in progress",
   Completed: "done",
 };
 
@@ -24,8 +24,8 @@ const Column = ({ state, toggleBox, isAddBoxOn }) => {
           className={`${
             state === "Not Started"
               ? "not_started"
-              : state === "On Progress"
-              ? "on_progress"
+              : state === "In Progress"
+              ? "in_progress"
               : "completed"
           } rounded px-2 `}
         >

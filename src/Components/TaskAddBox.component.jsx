@@ -9,7 +9,7 @@ import { updateTodoList } from "../Store/userSlice";
 import { addToDoList } from "../Utils/Firebase/firebase.util";
 
 const buttons = {
-  onprogress: "on progress",
+  inprogress: "in progress",
   not_started: "not started",
   completed: "done",
 };
@@ -100,8 +100,8 @@ const TaskAddBox = ({ hideBox, addTask, buttonType, state }) => {
               ${
                 buttonType === buttons.not_started
                   ? "not_started_button"
-                  : buttonType === buttons.onprogress
-                  ? "on_progress_button"
+                  : buttonType === buttons.inprogress
+                  ? "in_progress_button"
                   : "completed_button"
               }
               `}

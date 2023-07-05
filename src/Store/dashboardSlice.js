@@ -5,7 +5,7 @@ const initialState = {
   isProjectDropdownOn: false,
   isAddProjectModalOn: false,
   isNotStartedAddBoxOn: false,
-  isOnProgressAddBoxOn: false,
+  isInProgressAddBoxOn: false,
   isCompletedAddBoxOn: false,
   isItemGrabbed: false,
 };
@@ -32,10 +32,10 @@ export const dashboardSlice = createSlice({
         isNotStartedAddBoxOn: payload,
       };
     },
-    toggleOnProgressAddBox: (state, { payload }) => {
+    toggleInProgressAddBox: (state, { payload }) => {
       return {
         ...state,
-        isOnProgressAddBoxOn: payload,
+        isInProgressAddBoxOn: payload,
       };
     },
     toggleCompletedAddBox: (state, { payload }) => {
@@ -56,7 +56,7 @@ export const {
   toggleProjectDropdown,
   toggleAddProjectModal,
   toggleNotStartedAddBox,
-  toggleOnProgressAddBox,
+  toggleInProgressAddBox,
   toggleCompletedAddBox,
   setItemGrabbedCondition,
 } = dashboardSlice.actions;

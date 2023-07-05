@@ -7,15 +7,12 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  updateCurrentUser,
   updateProfile,
 } from "firebase/auth";
 import {
-  collection,
   doc,
   getDoc,
   getFirestore,
-  query,
   setDoc,
 } from "firebase/firestore";
 import uuid from "react-uuid";
@@ -100,7 +97,7 @@ export const createUserDocumentFormAuth = async (userAuth) => {
               updatedTime: Date.now(),
               description:
                 "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-              state: "on progress",
+              state: "in progress",
             },
             {
               id: uuid(),

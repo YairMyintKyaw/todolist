@@ -10,7 +10,7 @@
 }
 
 .input {
-  @apply px-3 py-2 min-w-[300px] w-[60%] max-w-[400px] border border-primary shadow  rounded placeholder:text-slate-400;
+  @apply px-3 py-2  border border-primary shadow  rounded placeholder:text-slate-400;
 }
 
 div:has(> .active) {
@@ -25,11 +25,11 @@ div:has(> .active) {
   @apply bg-red-200;
 }
 
-.on_progress_button {
+.in_progress_button {
   @apply bg-yellow-700 border-yellow-700 hover:text-yellow-700;
 }
 
-.on_progress {
+.in_progress {
   @apply bg-yellow-200;
 }
 

@@ -9,7 +9,7 @@ const Home = () => {
   const [projectNumber, setProjectNumber] = useState([]);
   const [tasks, setTasks] = useState([]);
   const [notFinishedTask, setNotFinishedTask] = useState([]);
-  const [onProgressTask, setOnProgressTask] = useState([]);
+  const [inProgressTask, setInProgressTask] = useState([]);
   const [finishedTask, setFinishedTask] = useState([]);
   const [lastSevenDayTaskCount, setLastSevenDayTaskCount] = useState([]);
 
@@ -29,7 +29,7 @@ const Home = () => {
 
   useEffect(() => {
     setNotFinishedTask(tasks.filter((task) => task.state === "not started"));
-    setOnProgressTask(tasks.filter((task) => task.state === "on progress"));
+    setInProgressTask(tasks.filter((task) => task.state === "in progress"));
     setFinishedTask(tasks.filter((task) => task.state === "done"));
   }, [tasks]);
 
@@ -55,7 +55,6 @@ const Home = () => {
       }
       setLastSevenDayTaskCount(previousDaysTaskCount);
     }
-    console.log(lastSevenDayTaskCount);
   }, [finishedTask]);
   return (
     <div className="flex flex-col flex-1 overflow-y-scroll ">
@@ -72,7 +71,7 @@ const Home = () => {
           <TaskCountsCard name="Projects" count={projectNumber} />
           <TaskCountsCard name="Tasks" count={tasks.length} />
           <TaskCountsCard name="Not Started" count={notFinishedTask.length} />
-          <TaskCountsCard name="On Progress" count={onProgressTask.length} />
+          <TaskCountsCard name="In Progress" count={inProgressTask.length} />
           <TaskCountsCard name="Finished" count={finishedTask.length} />
         </div>
         <div className="flex">
@@ -83,7 +82,7 @@ const Home = () => {
             <PieChart
               taskCountArray={[
                 notFinishedTask.length,
-                onProgressTask.length,
+                inProgressTask.length,
                 finishedTask.length,
               ]}
             />

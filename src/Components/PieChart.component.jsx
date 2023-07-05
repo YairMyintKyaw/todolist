@@ -11,7 +11,7 @@ const PieChart = ({ taskCountArray }) => {
         className="w-full"
         options={{}}
         data={{
-          labels: ["Not Started", "On Progress", "Done"],
+          labels: ["Not Started", "In Progress", "Done"],
           datasets: [
             {
               label: "# of Votes",

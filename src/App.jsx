@@ -20,12 +20,19 @@ const App = () => {
     onAuthStateChangedListener(async (userAuth) => {
       try {
         if (userAuth) {
-          const { displayName, email, uid } = userAuth;
-          createUserDocumentFormAuth(userAuth);
+          const { email, uid } = userAuth;
+          await createUserDocumentFormAuth(userAuth);
           const todoList = await getToDoList(uid);
-          dispatch(setUserInfo({ displayName, email, uid, todoList }));
+          dispatch(
+            setUserInfo({
+              displayName: userAuth.displayName,
+              email,
+              uid,
+              todoList,
+            })
+          );
         } else {
-          await dispatch(
+          dispatch(
             setUserInfo({
               displayName: "",
               uid: "",

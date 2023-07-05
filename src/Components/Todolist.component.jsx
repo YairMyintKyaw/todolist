@@ -5,7 +5,7 @@ import {
   setItemGrabbedCondition,
   toggleCompletedAddBox,
   toggleNotStartedAddBox,
-  toggleOnProgressAddBox,
+  toggleInProgressAddBox,
 } from "../Store/dashboardSlice";
 import Column from "./Column.component";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
@@ -19,7 +19,7 @@ const Todolist = () => {
   );
   const {
     isNotStartedAddBoxOn,
-    isOnProgressAddBoxOn,
+    isInProgressAddBoxOn,
     isCompletedAddBoxOn,
     isItemGrabbed,
   } = useSelector((state) => state.dashboard);
@@ -31,8 +31,8 @@ const Todolist = () => {
   const toggleNotStartedBox = () =>
     dispatch(toggleNotStartedAddBox(!isNotStartedAddBoxOn));
 
-  const toggleOnProgressBox = () =>
-    dispatch(toggleOnProgressAddBox(!isOnProgressAddBoxOn));
+  const toggleInProgressBox = () =>
+    dispatch(toggleInProgressAddBox(!isInProgressAddBoxOn));
 
   const toggleCompletedBox = () =>
     dispatch(toggleCompletedAddBox(!isCompletedAddBoxOn));
@@ -87,7 +87,7 @@ const Todolist = () => {
   useEffect(() => {
     //delete the add box when the project is changed
     dispatch(toggleNotStartedAddBox(false));
-    dispatch(toggleOnProgressAddBox(false));
+    dispatch(toggleInProgressAddBox(false));
     dispatch(toggleCompletedAddBox(false));
   }, [project]);
   return (
@@ -118,9 +118,9 @@ const Todolist = () => {
               isAddBoxOn={isNotStartedAddBoxOn}
             />
             <Column
-              state="On Progress"
-              toggleBox={toggleOnProgressBox}
-              isAddBoxOn={isOnProgressAddBoxOn}
+              state="In Progress"
+              toggleBox={toggleInProgressBox}
+              isAddBoxOn={isInProgressAddBoxOn}
             />
             <Column
               state="Completed"

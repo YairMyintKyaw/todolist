@@ -33,7 +33,6 @@ export const options = {
 };
 
 const LineChart = ({ countData }) => {
-  console.log(countData);
   return (
     <>
       <Line
