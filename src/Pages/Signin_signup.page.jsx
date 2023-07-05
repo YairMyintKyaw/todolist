@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { NavLink, Navigate, useNavigate } from "react-router-dom";
+import React, { useRef } from "react";
 import { animateCSS } from "../Utils/AnimateCss/animateCss.util";
 import "animate.css";
 import Signin from "../Components/Signin.component";
@@ -9,12 +8,12 @@ import {
   changeZIndex,
 } from "../Utils/ChangeCssStyle/changeStyle";
 import { useSelector } from "react-redux";
+import Loading from "../Components/Loading.component";
 
 const Signin_signup = () => {
   const signInContainer = useRef(null);
   const signUpContainer = useRef(null);
-  const isLoading = useSelector((state) => state.user.isLoading);
-
+  const isLoading = useSelector((state) => state.dashboard.isLoading);
   const NavigateToSignUp = async () => {
     await Promise.all([
       animateCSS(".SignInFormContainer", "fadeOutRight"),
@@ -49,6 +48,7 @@ const Signin_signup = () => {
         NavigateToSignIn={NavigateToSignIn}
         signUpContainer={signUpContainer}
       />
+      {isLoading && <Loading />}
     </div>
   );
 };

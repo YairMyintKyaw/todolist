@@ -2,8 +2,11 @@ import React, { useState } from "react";
 import { createAuthWithEmailAndPassword } from "../Utils/Firebase/firebase.util";
 import { image } from "../Image/image";
 import { Formik } from "formik";
+import { useDispatch } from "react-redux";
+import { toggleLoading } from "../Store/dashboardSlice";
 
 const Signup = ({ signUpContainer, NavigateToSignIn }) => {
+  const dispatch = useDispatch();
   return (
     <div
       className={` transition duration-1000 absolute top-0 left-0 right-0 bottom-0 m-auto flex flex-row-reverse bg-white signUpContainer`}
@@ -33,6 +36,7 @@ const Signup = ({ signUpContainer, NavigateToSignIn }) => {
             return error;
           }}
           onSubmit={async ({ email, password, name }) => {
+            dispatch(toggleLoading(true));
             await createAuthWithEmailAndPassword(email, password, name);
           }}
         >

@@ -8,6 +8,7 @@ const initialState = {
   isInProgressAddBoxOn: false,
   isCompletedAddBoxOn: false,
   isItemGrabbed: false,
+  isLoading: false,
 };
 
 export const dashboardSlice = createSlice({
@@ -48,6 +49,8 @@ export const dashboardSlice = createSlice({
       ...state,
       isItemGrabbed: payload,
     }),
+
+    toggleLoading: (state, { payload }) => ({ ...state, isLoading: payload }),
   },
 });
 
@@ -59,5 +62,6 @@ export const {
   toggleInProgressAddBox,
   toggleCompletedAddBox,
   setItemGrabbedCondition,
+  toggleLoading,
 } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

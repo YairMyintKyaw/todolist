@@ -6,14 +6,14 @@ import {
 } from "../Utils/Firebase/firebase.util";
 import { image } from "../Image/image";
 import { Formik } from "formik";
-
-const initialInputValue = {
-  email: "",
-  password: "",
-};
+import { useDispatch } from "react-redux";
+import { toggleLoading } from "../Store/dashboardSlice";
 
 const Signin = ({ signInContainer, NavigateToSignUp }) => {
+  const dispatch = useDispatch();
+
   const signInWithGoogle = async () => {
+    dispatch(toggleLoading(true));
     await signInWithGooglePopup();
   };
 
@@ -38,6 +38,7 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
               return error;
             }}
             onSubmit={async ({ email, password }) => {
+              dispatch(toggleLoading(true));
               await signInAuthWithEmailAndPassword(email, password);
             }}
           >

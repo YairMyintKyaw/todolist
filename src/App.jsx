@@ -12,6 +12,7 @@ import HomeMedium from "./Medium/Home.medium";
 import DashboardMedium from "./Medium/Dashboard.medium";
 import Todolist from "./Components/Todolist.component";
 import Home from "./Components/Home.compoent";
+import { toggleLoading } from "./Store/dashboardSlice";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -44,6 +45,7 @@ const App = () => {
       } catch (error) {
         alert(error);
       }
+      dispatch(toggleLoading(false));
     });
   }, []);
 
