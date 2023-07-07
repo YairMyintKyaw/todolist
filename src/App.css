@@ -44,3 +44,9 @@ div:has(> .active) {
 .completed {
   @apply bg-green-200;
 }
+
+/* carousel pagination */
+div.swiper-pagination {
+  position: relative;
+  margin-top: 10px;
+}

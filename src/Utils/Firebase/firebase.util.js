@@ -9,12 +9,7 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import {
-  doc,
-  getDoc,
-  getFirestore,
-  setDoc,
-} from "firebase/firestore";
+import { doc, getDoc, getFirestore, setDoc } from "firebase/firestore";
 import uuid from "react-uuid";
 
 const firebaseConfig = {
@@ -50,11 +45,17 @@ export const signInAuthWithEmailAndPassword = async (email, password) => {
 };
 
 export const createAuthWithEmailAndPassword = async (email, password, name) => {
-  if (!email && !password) return;
-  const { user } = await createUserWithEmailAndPassword(auth, email, password);
-  await updateProfile(auth.currentUser, { displayName: name });
-
-  return user;
+  try {
+    if (!email && !password) return;
+    const { user } = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    await updateProfile(auth.currentUser, { displayName: name });
+  } catch (error) {
+    return error.code;
+  }
 };
 
 export const signOutUser = () => signOut(auth);

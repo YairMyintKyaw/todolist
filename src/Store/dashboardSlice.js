@@ -9,6 +9,7 @@ const initialState = {
   isCompletedAddBoxOn: false,
   isItemGrabbed: false,
   isLoading: false,
+  errorMessage: { emailInvalid: "", signInError: false },
 };
 
 export const dashboardSlice = createSlice({
@@ -51,6 +52,11 @@ export const dashboardSlice = createSlice({
     }),
 
     toggleLoading: (state, { payload }) => ({ ...state, isLoading: payload }),
+
+    setErrorMessage: (state, { payload }) => ({
+      ...state,
+      errorMessage: payload,
+    }),
   },
 });
 
@@ -63,5 +69,6 @@ export const {
   toggleCompletedAddBox,
   setItemGrabbedCondition,
   toggleLoading,
+  setErrorMessage,
 } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

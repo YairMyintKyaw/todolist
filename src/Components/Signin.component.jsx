@@ -1,13 +1,13 @@
-import React, { useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import {
   signInAuthWithEmailAndPassword,
   signInWithGooglePopup,
 } from "../Utils/Firebase/firebase.util";
-import { image } from "../Image/image";
 import { Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleLoading } from "../Store/dashboardSlice";
+import { RxCrossCircled } from "react-icons/rx";
+import Carousel from "./Carousel.component";
 
 const Signin = ({ signInContainer, NavigateToSignUp }) => {
   const dispatch = useDispatch();
@@ -17,6 +17,8 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
     await signInWithGooglePopup();
   };
 
+  const errorMessage = useSelector((state) => state.dashboard.errorMessage);
+
   return (
     <div
       className={`transition duration-1000 z-10 absolute top-0 left-0 right-0 bottom-0 m-auto flex bg-white signInContainer text-primary`}
@@ -25,8 +27,15 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
       <div
         className={`flex-1 flex flex-col gap-6 justify-center items-center SignInFormContainer animate__fast`}
       >
-        <h2 className=" text-3xl text-start">Sign in </h2>
-
+        <div>
+          <h2 className=" text-3xl text-center mb-3">Task Vortex</h2>
+        </div>
+        {errorMessage.signInError && (
+          <div className="flex items-center gap-3  rounded py-1 px-2 text-red-600 bg-red-200">
+            <RxCrossCircled className="text-red-700 text-xl" />
+            <span>Wrong Password or Email doesn't exist</span>
+          </div>
+        )}
         <div>
           <Formik
             initialValues={{ password: "", email: "" }}
@@ -126,9 +135,9 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
         </div>
       </div>
       <div
-        className={`flex-1 flex items-center justify-center bg-[#F4E8EA] SignInImageContainer animate__fast`}
+        className={`flex-1 flex items-center justify-center bg-primary SignInImageContainer animate__fast overflow-hidden`}
       >
-        <img src={image.sign_in} alt="" />
+        <Carousel />
       </div>
     </div>
   );
