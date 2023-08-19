@@ -14,8 +14,20 @@ const NavBar = () => {
         isNavBarOn ? "min-w-[20%] w-[20%]" : "min-w-[80px]"
       }  h-screen flex flex-col pb-3 text-primary border-r border-r-primary  bg-secondary rounded-tr-lg overflow-scroll transition-all duration-300`}
     >
-      {/* Nav bar toggle icon button */}
-      <NavBarToggleButton />
+      <div
+        className={`flex items-center  relative my-3 ${
+          isNavBarOn ? "justify-end" : "justify-center"
+        }`}
+      >
+        {isNavBarOn && (
+          <span className="absolute left-0 right-0 m-auto text-center text-lg font-bold text-primary">
+            TASK VOTEX
+          </span>
+        )}
+        {/* Nav bar toggle icon button */}
+        <NavBarToggleButton />
+      </div>
+
       {/* navigation */}
       <Nav />
       <div>

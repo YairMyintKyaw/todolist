@@ -35,7 +35,7 @@ const TaskAddBox = ({ hideBox, addTask, buttonType, state }) => {
               ...todoList[project],
               {
                 id: uuid(),
-                name: values.task_name,
+                name: values.task_name.toUpperCase(),
                 description: values.description,
                 updatedTime: Date.now(),
                 state: state,

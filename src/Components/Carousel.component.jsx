@@ -51,7 +51,7 @@ const Carousel = () => {
         }}
         modules={[Autoplay, Pagination, A11y]}
         autoplay={{
-          delay: 2000,
+          delay: 2500,
           disableOnInteraction: false,
           pauseOnMouseEnter: true,
         }}

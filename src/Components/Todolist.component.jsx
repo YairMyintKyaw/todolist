@@ -110,8 +110,8 @@ const Todolist = () => {
         </div>
       </header>
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-        <div className="flex flex-1 flex-col bg-secondary text-primary overflow-hidden ">
-          <div className="flex flex-1 gap-4 p-3 overflow-hidden">
+        <div className="flex flex-1 flex-col bg-secondary text-primary overflow-hidden">
+          <div className="flex flex-1 gap-4 p-3 overflow-hidden ">
             <Column
               state="Not Started"
               toggleBox={toggleNotStartedBox}

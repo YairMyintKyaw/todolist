@@ -20,7 +20,7 @@ const NavBarToggleButton = () => {
     <div
       className={`${
         isNavBarOn ? "justify-end" : "justify-center"
-      } text-2xl flex   text-end p-5`}
+      } text-2xl flex   text-end p-5 z-10`}
     >
       {isNavBarOn ? (
         <span className="cursor-pointer" onClick={toggleNavState}>

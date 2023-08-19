@@ -25,6 +25,7 @@
     "react-router-dom": "^6.9.0",
     "react-uuid": "^2.0.0",
     "redux-persist": "^6.0.0",
+    "sweetalert2": "^11.7.23",
     "swiper": "^10.0.3",
     "vite-plugin-svgr": "^3.2.0"
   },

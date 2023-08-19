@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { FaPlus } from "react-icons/fa";
+import { AiOutlinePlus } from "react-icons/ai";
 import TaskAddBox from "./TaskAddBox.component";
 import TodoListCard from "./TodoListCard.component";
 import { Droppable } from "react-beautiful-dnd";
@@ -18,7 +19,7 @@ const Column = ({ state, toggleBox, isAddBoxOn }) => {
   const tasks = todoList[project];
 
   return (
-    <div className="flex-1 flex flex-col select-none rounded-lg ">
+    <div className="flex-1 flex flex-col  select-none rounded-lg ">
       <div className="group relative flex justify-between gap-4 items-center py-5 text-lg ">
         <span
           className={`${
@@ -60,9 +61,12 @@ const Column = ({ state, toggleBox, isAddBoxOn }) => {
               {!isAddBoxOn && (
                 <div
                   onClick={toggleBox}
-                  className="cursor-pointer border border-primary border-dashed p-3 rounded opacity-70"
+                  className="flex justify-between items-center cursor-pointer border border-primary border-dashed p-3 rounded opacity-70"
                 >
-                  Add new task
+                  <span>Add new task</span>
+                  <span>
+                    <AiOutlinePlus className="text-2xl" />
+                  </span>
                 </div>
               )}
               {isAddBoxOn && (

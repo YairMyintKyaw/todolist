@@ -10,7 +10,7 @@
 }
 
 .input {
-  @apply px-3 py-2  border border-primary shadow  rounded placeholder:text-slate-400;
+  @apply px-3 py-2  border border-primary shadow bg-secondary  rounded placeholder:text-slate-400;
 }
 
 .active {

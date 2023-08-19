@@ -46,7 +46,6 @@ const Home = () => {
           currentMonth,
           currentDay - i
         ).toDateString();
-        console.log();
         previousDaysTaskCount.push(
           finishedTask.filter(
             (task) => new Date(task.updatedTime).toDateString() === date

@@ -10,6 +10,7 @@ const initialState = {
   isItemGrabbed: false,
   isLoading: false,
   errorMessage: { emailInvalid: "", signInError: false },
+  editProject: { isEditProjectModalOn: false, editedProject: "" },
 };
 
 export const dashboardSlice = createSlice({
@@ -26,6 +27,10 @@ export const dashboardSlice = createSlice({
 
     toggleAddProjectModal: (state) => {
       return { ...state, isAddProjectModalOn: !state.isAddProjectModalOn };
+    },
+
+    setEditProject: (state, { payload }) => {
+      return { ...state, editProject: payload };
     },
 
     toggleNotStartedAddBox: (state, { payload }) => {
@@ -70,5 +75,6 @@ export const {
   setItemGrabbedCondition,
   toggleLoading,
   setErrorMessage,
+  setEditProject,
 } = dashboardSlice.actions;
 export default dashboardSlice.reducer;

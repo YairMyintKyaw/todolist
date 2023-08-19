@@ -1,17 +1,18 @@
 import React from "react";
-import { RxCross1 } from "react-icons/rx";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleAddProjectModal } from "../Store/dashboardSlice";
+import { RxCross1 } from "react-icons/rx";
+import { setEditProject } from "../Store/dashboardSlice";
 import { Formik } from "formik";
 import { updateTodoList } from "../Store/userSlice";
 import { addToDoList } from "../Utils/Firebase/firebase.util";
 import { useNavigate } from "react-router-dom";
 
-const AddProjectModal = () => {
+const EditProjectModal = () => {
   const { uid, todoList } = useSelector((state) => state.user);
+  const { editProject } = useSelector((state) => state.dashboard);
   const dispatch = useDispatch();
   const closeProjectModal = () => {
-    dispatch(toggleAddProjectModal());
+    dispatch(setEditProject({ ...editProject, isEditProjectModalOn: false }));
   };
   const nav = useNavigate();
   return (
@@ -24,22 +25,23 @@ const AddProjectModal = () => {
           />
         </div>
         <Formik
-          initialValues={{ project_name: "" }}
+          initialValues={{ project_name: editProject.editedProject }}
           validate={(values) => {
             const error = {};
             if (!values.project_name) error.project_name = "Required";
 
             return error;
           }}
-          onSubmit={(values) => {
-            const newList = {
-              ...todoList,
-              [values.project_name.trim()]: [],
-            };
-
-            dispatch(updateTodoList(newList));
-            addToDoList(uid, newList);
-            nav(`todolist/${values.project_name}`);
+          onSubmit={async (values) => {
+            const newTodoList = JSON.parse(JSON.stringify(todoList));
+            const updatedProjectName = values.project_name.trim();
+            if (updatedProjectName === editProject.editedProject) return;
+            newTodoList[updatedProjectName] =
+              newTodoList[editProject.editedProject];
+            delete newTodoList[editProject.editedProject];
+            dispatch(updateTodoList(newTodoList));
+            addToDoList(uid, newTodoList);
+            nav(`todolist/${updatedProjectName}`);
             closeProjectModal();
           }}
         >
@@ -55,7 +57,7 @@ const AddProjectModal = () => {
             <form action="" onSubmit={handleSubmit}>
               <div className="flex flex-col gap-16">
                 <label htmlFor="projectName" className="text-5xl text-primary">
-                  Project Name
+                  Edit Project Name
                 </label>
                 <input
                   required
@@ -64,6 +66,7 @@ const AddProjectModal = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   value={values.project_name}
+                  placeholder={editProject.editedProject}
                   className="text-4xl bg-inherit border-b border-b-primary focus:outline-none text-primary"
                 />
                 {errors.project_name && touched.project_name && (
@@ -88,4 +91,4 @@ const AddProjectModal = () => {
   );
 };
 
-export default AddProjectModal;
+export default EditProjectModal;

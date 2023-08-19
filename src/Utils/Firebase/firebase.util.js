@@ -4,6 +4,8 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  sendEmailVerification,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -38,15 +40,16 @@ export const signInAuthWithEmailAndPassword = async (email, password) => {
   if (!email && !password) return;
 
   try {
-    return await signInWithEmailAndPassword(auth, email, password);
-  } catch (e) {
-    console.log(e);
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    return error.code;
   }
 };
 
 export const createAuthWithEmailAndPassword = async (email, password, name) => {
   try {
     if (!email && !password) return;
+
     const { user } = await createUserWithEmailAndPassword(
       auth,
       email,
@@ -131,4 +134,12 @@ export const getToDoList = async (uid) => {
     console.log("No Document");
     return null;
   }
+};
+
+export const sendVerificationMail = () => {
+  return sendEmailVerification(auth.currentUser);
+};
+
+export const sendResetPasswordMail = (email) => {
+  return sendPasswordResetEmail(auth, email);
 };

@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   createUserDocumentFormAuth,
   getToDoList,
   onAuthStateChangedListener,
+  sendVerificationMail,
 } from "./Utils/Firebase/firebase.util";
 import { useDispatch } from "react-redux";
 import { setUserInfo } from "./Store/userSlice";
@@ -12,16 +13,24 @@ import HomeMedium from "./Medium/Home.medium";
 import DashboardMedium from "./Medium/Dashboard.medium";
 import Todolist from "./Components/Todolist.component";
 import Home from "./Components/Home.compoent";
-import { toggleLoading } from "./Store/dashboardSlice";
+import { setErrorMessage, toggleLoading } from "./Store/dashboardSlice";
+import EmailVerified from "./Pages/EmailVerified.page";
 
 const App = () => {
   const dispatch = useDispatch();
-
+  const nav = useNavigate();
   useEffect(() => {
     onAuthStateChangedListener(async (userAuth) => {
+      dispatch(toggleLoading(true));
       try {
         if (userAuth) {
           const { email, uid } = userAuth;
+          if (!userAuth.emailVerified) {
+            sendVerificationMail();
+            nav("/verification");
+            dispatch(toggleLoading(false));
+            return;
+          }
           await createUserDocumentFormAuth(userAuth);
           const todoList = await getToDoList(uid);
           dispatch(
@@ -30,6 +39,12 @@ const App = () => {
               email,
               uid,
               todoList,
+            })
+          );
+          dispatch(
+            setErrorMessage({
+              signInError: false,
+              emailInvalid: "",
             })
           );
         } else {
@@ -43,7 +58,7 @@ const App = () => {
           );
         }
       } catch (error) {
-        alert(error);
+        console.log(error);
       }
       dispatch(toggleLoading(false));
     });
@@ -57,6 +72,7 @@ const App = () => {
           <Route index element={<Home />} />
           <Route path="todolist/:project" element={<Todolist />} />
         </Route>
+        <Route path="/verification" element={<EmailVerified />} />
       </Routes>
     </div>
   );
