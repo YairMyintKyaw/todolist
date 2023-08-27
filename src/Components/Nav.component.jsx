@@ -60,11 +60,19 @@ const Nav = () => {
     );
   };
 
+  const handleClick = () => {
+    if (window.innerWidth < 768) {
+      dispatch(toggleNavBar(false));
+      dispatch(toggleProjectDropdown(false));
+    }
+  };
+
   return (
-    <nav className="flex flex-col flex-1">
+    <nav className="flex flex-col flex-1 z-50">
       {/* home tab */}
       <NavLink
         to={""}
+        onClick={handleClick}
         className="p-5 flex items-center justify-center hover:bg-primary hover:text-secondary transition-colors duration-200 bg-inherit "
         end
       >
@@ -97,6 +105,7 @@ const Nav = () => {
               <NavLink
                 to={`todolist/${project}`}
                 className="flex-1  cursor-pointer overflow-hidden"
+                onClick={handleClick}
                 style={{ wordWrap: "break-word" }}
               >
                 {project}

@@ -69,7 +69,7 @@ const Carousel = () => {
                   }}
                 />
               </div>
-              <div className="text-secondary text-center w-1/2 mx-auto ">
+              <div className="text-secondary text-center w-2/3 lg:w-1/2 mx-auto ">
                 <h4 className="text-xl mb-2">
                   {textInCarousel[index].heading}
                 </h4>

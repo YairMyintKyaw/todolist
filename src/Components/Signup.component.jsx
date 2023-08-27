@@ -10,11 +10,11 @@ const Signup = ({ signUpContainer, NavigateToSignIn }) => {
   const errorMessage = useSelector((state) => state.dashboard.errorMessage);
   return (
     <div
-      className={` transition duration-1000 absolute top-0 left-0 right-0 bottom-0 m-auto flex flex-row-reverse bg-secondary signUpContainer`}
+      className={`flex flex-col md:flex-row-reverse transition min-h-screen w-full overflow-y-scroll duration-1000 absolute top-0 left-0 right-0 bottom-0 m-auto  bg-secondary signUpContainer`}
       ref={signUpContainer}
     >
       <div
-        className={` flex-1 flex flex-col  gap-6 justify-center items-center SignUpFormContainer animate__fast`}
+        className={` md:flex-1 flex flex-col overflow-y-scroll min-h-full gap-6 justify-center items-center SignUpFormContainer animate__fast`}
       >
         <h2 className=" text-3xl text-start"> Create Your Account </h2>
         <div className="w-[60%] ">
@@ -54,7 +54,7 @@ const Signup = ({ signUpContainer, NavigateToSignIn }) => {
                   })
                 );
                 dispatch(toggleLoading(false));
-              } 
+              }
             }}
           >
             {({
@@ -113,7 +113,7 @@ const Signup = ({ signUpContainer, NavigateToSignIn }) => {
                       {errorMessage.emailInvalid}
                     </div>
                   )}
-                  <div className="flex gap-3 w-full">
+                  <div className="flex flex-col md:flex-row gap-3 w-full">
                     <div className="flex flex-col flex-1">
                       <label htmlFor="signUpPassword" className="mt-3">
                         Password
@@ -136,7 +136,7 @@ const Signup = ({ signUpContainer, NavigateToSignIn }) => {
                       )}
                     </div>
                     <div className="flex flex-col flex-1">
-                      <label htmlFor="confirmPassword" className="mt-3">
+                      <label htmlFor="confirmPassword" className="md:mt-3">
                         Confirm Password
                       </label>
                       <input
@@ -179,7 +179,7 @@ const Signup = ({ signUpContainer, NavigateToSignIn }) => {
         </div>
       </div>
       <div
-        className={`flex-1 flex items-center justify-center bg-primary SignUpImageContainer animate__fast overflow-hidden`}
+        className={`md:flex-1 flex min-h-full items-center justify-center bg-primary SignUpImageContainer animate__fast md:overflow-hidden`}
       >
         <Carousel />
       </div>

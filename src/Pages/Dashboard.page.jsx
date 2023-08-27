@@ -13,7 +13,9 @@ const Dashboard = () => {
   return (
     <div className="flex bg-primary h-screen ">
       <NavBar />
-      <div className="flex-1 flex flex-col text-secondary">{<Outlet />}</div>
+      <div className="flex-1 flex flex-col text-secondary max-w-[100vw] overflow-hidden">
+        {<Outlet />}
+      </div>
       {isAddProjectModalOn && <AddProjectModal />}
       {editProject.isEditProjectModalOn && <EditProjectModal />}
     </div>

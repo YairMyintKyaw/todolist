@@ -44,11 +44,11 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
   };
   return (
     <div
-      className={`transition duration-1000 z-10 absolute top-0 left-0 right-0 bottom-0 m-auto flex bg-secondary signInContainer text-primary overflow-hidden`}
+      className={`flex flex-col md:flex-row overflow-y-scroll transition  min-h-screen w-full duration-1000 z-10 absolute top-0 left-0 right-0 bottom-0 m-auto  bg-secondary signInContainer text-primary `}
       ref={signInContainer}
     >
       <div
-        className={`flex-1 flex flex-col gap-6 justify-center items-center SignInFormContainer overflow-y-scroll animate__fast`}
+        className={`md:flex-1 flex flex-col gap-6 min-h-full justify-center items-center SignInFormContainer overflow-y-scroll animate__fast`}
       >
         <div>
           <h2 className=" text-3xl text-center mb-3">Task Vortex</h2>
@@ -176,7 +176,7 @@ const Signin = ({ signInContainer, NavigateToSignUp }) => {
         </div>
       </div>
       <div
-        className={`flex-1 flex items-center justify-center bg-primary SignInImageContainer animate__fast overflow-hidden`}
+        className={`md:flex-1 flex min-h-full  items-center justify-center bg-primary SignInImageContainer animate__fast md:overflow-hidden`}
       >
         <Carousel />
       </div>

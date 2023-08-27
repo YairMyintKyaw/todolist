@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import TaskCountsCard from "./TaskCountsCard.component";
 import LineChart from "./LineChart.component";
 import PieChart from "./PieChart.component";
+import NavBarToggleButton from "./NavBarToggleButton";
 
 const Home = () => {
   const { displayName, todoList } = useSelector((state) => state.user);
@@ -57,27 +58,32 @@ const Home = () => {
   }, [finishedTask]);
   return (
     <div className="flex flex-col flex-1 overflow-y-scroll ">
-      <header className="flex justify-between items-center p-10">
+      <header className="flex justify-between items-center p-10  ">
         <div className=" ">
           <div className="text-4xl">Hello, {displayName}</div>
           <div className="text-2xl">
             {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
           </div>
         </div>
+        <div>
+          <span className="flex md:hidden">
+            <NavBarToggleButton />
+          </span>
+        </div>
       </header>
       <div className="bg-secondary text-primary flex-1">
-        <div className="flex gap-4 px-4 relative bottom-6 justify-around">
+        <div className="flex flex-wrap gap-4 px-4 relative bottom-6 justify-around  ">
           <TaskCountsCard name="Projects" count={projectNumber} />
           <TaskCountsCard name="Tasks" count={tasks.length} />
           <TaskCountsCard name="Not Started" count={notFinishedTask.length} />
           <TaskCountsCard name="In Progress" count={inProgressTask.length} />
           <TaskCountsCard name="Finished" count={finishedTask.length} />
         </div>
-        <div className="flex">
-          <div className="w-2/3">
+        <div className="flex flex-wrap">
+          <div className="w-full md:w-2/3 mb-10 md:mb-auto px-4">
             <LineChart countData={lastSevenDayTaskCount} />
           </div>
-          <div className="w-1/3">
+          <div className="w-1/2 md:w-1/3 mx-auto">
             <PieChart
               taskCountArray={[
                 notFinishedTask.length,

@@ -37,7 +37,7 @@ const Signin_signup = () => {
   };
 
   return (
-    <div className=" flex h-screen">
+    <div className="relative min-h-screen w-screen overflow-hidden">
       {/* sign in */}
       <Signin
         NavigateToSignUp={NavigateToSignUp}

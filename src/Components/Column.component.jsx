@@ -19,7 +19,7 @@ const Column = ({ state, toggleBox, isAddBoxOn }) => {
   const tasks = todoList[project];
 
   return (
-    <div className="flex-1 flex flex-col  select-none rounded-lg ">
+    <div className="md:flex-1 flex flex-col  select-none rounded-lg min-w-[270px] md:min-w-[auto] ">
       <div className="group relative flex justify-between gap-4 items-center py-5 text-lg ">
         <span
           className={`${
@@ -39,7 +39,11 @@ const Column = ({ state, toggleBox, isAddBoxOn }) => {
           <FaPlus className="text-3xl text-primary p-1  cursor-pointer hover:scale-95" />
         </div>
       </div>
-      <div className="flex-1 overflow-y-scroll flex flex-col justify-start ">
+      <div
+        className={`flex-1 ${
+          window.innerWidth > 768 && "overflow-y-scroll"
+        } flex flex-col justify-start`}
+      >
         <Droppable droppableId={states[state]}>
           {(provided) => (
             <div

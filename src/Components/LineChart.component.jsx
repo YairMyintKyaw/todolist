@@ -27,25 +27,65 @@ export const options = {
     },
     title: {
       display: true,
-      text: "Number of Finished Task Over time",
+      text: "Number of Finished Task Last Week",
+    },
+  },
+  scales: {
+    y: {
+      ticks: {
+        stepSize: 1,
+      },
     },
   },
 };
 
+const getDay = (day) => {
+  switch (day) {
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4:
+      return "Thursday";
+    case 5:
+      return "Friday";
+    case 6:
+      return "Saturday";
+  }
+};
+
 const LineChart = ({ countData }) => {
+  const todayDate = new Date();
+  const thisYear = todayDate.getFullYear();
+  const thisMonth = todayDate.getMonth();
+  const today = todayDate.getDate();
+
   return (
     <>
       <Line
-        className="w-full"
+        className="min-w-full  "
         options={options}
         data={{
-          labels: [7, 6, 5, 4, 3, 2, 1],
+          labels: [
+            getDay(new Date(thisYear, thisMonth, today - 6).getDay()),
+            getDay(new Date(thisYear, thisMonth, today - 5).getDay()),
+            getDay(new Date(thisYear, thisMonth, today - 4).getDay()),
+            getDay(new Date(thisYear, thisMonth, today - 3).getDay()),
+            getDay(new Date(thisYear, thisMonth, today - 2).getDay()),
+            getDay(new Date(thisYear, thisMonth, today - 1).getDay()),
+            getDay(todayDate.getDay()),
+          ],
           datasets: [
             {
-              label: "Dataset 2",
+              label: "Finished Tasks",
               data: countData,
-              borderColor: "rgb(53, 162, 235)",
-              backgroundColor: "rgba(53, 162, 235, 0.5)",
+              borderColor: "#1d3557",
+              backgroundColor: "#f1faee",
+              tension: 0.1,
             },
           ],
         }}

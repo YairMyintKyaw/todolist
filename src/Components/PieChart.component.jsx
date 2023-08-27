@@ -14,9 +14,13 @@ const PieChart = ({ taskCountArray }) => {
           labels: ["Not Started", "In Progress", "Done"],
           datasets: [
             {
-              label: "# of Votes",
+              label: "# task(s)",
               data: taskCountArray,
-              backgroundColor: ["#fecaca", "#fef08a", "#bbf7d0"],
+              backgroundColor: [
+                "rgb(248 113 113)",
+                "rgb(250 204 21)",
+                " rgb(74 222 128)",
+              ],
               borderColor: ["#fecaca", "#fef08a", "#bbf7d0"],
               borderWidth: 1,
             },

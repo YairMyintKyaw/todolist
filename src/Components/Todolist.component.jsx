@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import {
@@ -12,6 +12,7 @@ import { DragDropContext, Droppable } from "react-beautiful-dnd";
 import { updateTodoList } from "../Store/userSlice";
 import { addToDoList } from "../Utils/Firebase/firebase.util";
 import { FaTrashAlt } from "react-icons/fa";
+import NavBarToggleButton from "./NavBarToggleButton";
 
 const Todolist = () => {
   const { displayName, todoList, email, uid } = useSelector(
@@ -23,7 +24,7 @@ const Todolist = () => {
     isCompletedAddBoxOn,
     isItemGrabbed,
   } = useSelector((state) => state.dashboard);
-
+  const taskColumnContainer = useRef(null);
   const date = new Date();
   const { project } = useParams();
   const dispatch = useDispatch();
@@ -80,7 +81,7 @@ const Todolist = () => {
     addToDoList(uid, newTodoList);
   };
 
-  const onDragStart = () => {
+  const onDragStart = (e) => {
     dispatch(setItemGrabbedCondition(true));
   };
 
@@ -104,14 +105,21 @@ const Todolist = () => {
             {date.getMonth() + 1}/{date.getDate()}/{date.getFullYear()}
           </div>
         </div>
-        <div className="flex  flex-col text-end">
-          <span className="text-2xl">{displayName}</span>
-          <span className="text-sm">{email}</span>
+        <div className=" flex-col text-end">
+          <span className="md:flex hidden text-2xl">{displayName}</span>
+          <span className="md:flex hidden text-sm">{email}</span>
+          <span className="flex md:hidden">
+            <NavBarToggleButton />
+          </span>
         </div>
       </header>
+
       <DragDropContext onDragEnd={onDragEnd} onDragStart={onDragStart}>
-        <div className="flex flex-1 flex-col bg-secondary text-primary overflow-hidden">
-          <div className="flex flex-1 gap-4 p-3 overflow-hidden ">
+        <div className=" flex flex-1 flex-col bg-secondary text-primary md:overflow-hidden overflow-y-scroll ">
+          <div
+            className="flex flex-1 gap-4 p-3 md:overflow-hidden overflow-y-scroll taskColumnContainer"
+            ref={taskColumnContainer}
+          >
             <Column
               state="Not Started"
               toggleBox={toggleNotStartedBox}
@@ -128,15 +136,15 @@ const Todolist = () => {
               isAddBoxOn={isCompletedAddBoxOn}
             />
           </div>
-          <div className={`w-full h-10`}>
+          <div className={`w-full h-10 `}>
             <Droppable droppableId="Delete">
               {(provided, snapshot) => (
                 <div
                   ref={provided.innerRef}
                   {...provided.droppableProps}
                   className={`${
-                    isItemGrabbed ? "h-full" : "h-0"
-                  } flex items-end relative overflow-hidden`}
+                    isItemGrabbed ? "opacity-100" : "opacity-0"
+                  } h-full flex items-end relative overflow-hidden`}
                 >
                   <div
                     className={`${
@@ -147,6 +155,7 @@ const Todolist = () => {
                   >
                     <FaTrashAlt className="text-lg" />
                   </div>
+                  <span className="hidden">{provided.placeholder}</span>
                 </div>
               )}
             </Droppable>

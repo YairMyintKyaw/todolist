@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
+import { RxCross1 } from "react-icons/rx";
+import { CiMenuFries } from "react-icons/ci";
 import { toggleNavBar, toggleProjectDropdown } from "../Store/dashboardSlice";
 
 const NavBarToggleButton = () => {
@@ -28,7 +29,7 @@ const NavBarToggleButton = () => {
         </span>
       ) : (
         <span className="cursor-pointer" onClick={toggleNavState}>
-          <RxHamburgerMenu />
+          <CiMenuFries />
         </span>
       )}
     </div>
