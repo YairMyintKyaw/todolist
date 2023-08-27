@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isNavBarOn: true,
+  isNavBarOn: false,
   isProjectDropdownOn: false,
   isAddProjectModalOn: false,
   isNotStartedAddBoxOn: false,
