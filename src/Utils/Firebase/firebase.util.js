@@ -89,26 +89,26 @@ export const createUserDocumentFormAuth = async (userAuth) => {
           Project: [
             {
               id: uuid(),
-              name: "Task title",
+              name: "This is Not Started Phase",
               updatedTime: Date.now(),
               description:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                "You can put not started task here. Click the new task and fill the task title to create new task. You can drag and drop the task to change the phase of the task. ",
               state: "not started",
             },
             {
               id: uuid(),
-              name: "Task title 2",
+              name: "This is in progress Phase ",
               updatedTime: Date.now(),
               description:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                "You can put in progress task here. Click the new task and fill the task title to create new task. You can drag and drop the task to change the phase of the task.",
               state: "in progress",
             },
             {
               id: uuid(),
-              name: "Task title 3",
+              name: "This is Finished Phase",
               updatedTime: Date.now(),
               description:
-                "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+                "You can put finished task here. Click the new task and fill the task title to create new task. You can drag and drop the task to change the phase of the task.",
               state: "done",
             },
           ],
